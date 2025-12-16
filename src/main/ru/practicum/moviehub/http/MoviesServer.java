@@ -8,14 +8,10 @@ import java.net.InetSocketAddress;
 
 public class MoviesServer {
 
-    private final int PORT;
-
     private final HttpServer server;
 
     public MoviesServer(MoviesStore moviesStore, int port) {
         try {
-            PORT = port;
-
             server = HttpServer.create(new InetSocketAddress(port), 0);
 
             server.createContext("/movies", new MoviesHandler(moviesStore));
@@ -27,7 +23,7 @@ public class MoviesServer {
 
     public void start() {
         server.start();
-        System.out.println("Сервер запущен на порту " + PORT);
+        System.out.println("Сервер запущен");
     }
 
     public void stop() {
